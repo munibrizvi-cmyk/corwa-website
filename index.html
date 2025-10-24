@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORWA Health - Clarity, on the double</title>
+    <title>CORWA Health - Transform Medical Data into Decisions</title>
     <style>
         * {
             margin: 0;
@@ -12,63 +12,91 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            color: #1a3a52;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
 
+        /* Navigation */
         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .logo-svg {
-            height: 60px;
-            width: auto;
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4a90e2 0%, #63b3ed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 40px;
             list-style: none;
             align-items: center;
         }
 
         .nav-links a {
-            color: #1a3a52;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
             font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #2b6cb0;
+            color: #4a90e2;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4a90e2;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .btn {
-            padding: 12px 28px;
-            border-radius: 6px;
+            padding: 12px 32px;
+            border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -79,258 +107,270 @@
         }
 
         .btn-primary {
-            background: #2b6cb0;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
             color: white;
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4);
         }
 
         .btn-primary:hover {
-            background: #1e4d7f;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);
+            box-shadow: 0 6px 30px rgba(74, 144, 226, 0.6);
         }
 
+        /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 80px 0 100px;
-            background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 50px); }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: #1a3a52;
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0b4d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero .subtitle {
-            font-size: 22px;
-            color: #4a5568;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.5;
-        }
-
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin: 80px 0;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .benefit-card {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .benefit-card h3 {
             font-size: 24px;
-            color: #2b6cb0;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(74, 144, 226, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(74, 144, 226, 0.1);
+            border-color: #4a90e2;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 120px 0;
+            background: #0f1425;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4a90e2;
             margin-bottom: 15px;
             font-weight: 600;
         }
 
-        .benefit-card p {
-            color: #4a5568;
-            line-height: 1.6;
+        .section-header h2 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0b4d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.6) 0%, rgba(15, 20, 37, 0.6) 100%);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 16px;
+            padding: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+            box-shadow: 0 20px 60px rgba(74, 144, 226, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
             font-size: 16px;
         }
 
-        .how-it-works {
-            background: #f7fafc;
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #1a3a52;
-        }
-
-        .section-title p {
-            font-size: 18px;
-            color: #4a5568;
+        /* How It Works */
+        .process-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
         }
 
         .process-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .step {
-            flex: 1;
+        .step-card {
             text-align: center;
-            padding: 20px;
+            position: relative;
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: #2b6cb0;
-            color: white;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 32px;
             font-weight: 700;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .step-card h4 {
             font-size: 20px;
-            margin: 0 auto 15px;
+            margin-bottom: 12px;
         }
 
-        .step h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #1a3a52;
+        .step-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
         }
 
-        .step p {
-            color: #4a5568;
-            font-size: 14px;
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
         }
 
-        .arrow {
-            color: #2b6cb0;
-            font-size: 30px;
-            flex-shrink: 0;
-        }
-
-        .cta-banner {
-            background: #2b6cb0;
-            color: white;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
             text-align: center;
-            padding: 60px 20px;
         }
 
-        .cta-banner h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            font-weight: 600;
+        .stat-item h3 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .product-section {
-            padding: 80px 0;
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.95;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            margin-top: 60px;
-        }
-
-        .product-feature {
-            background: #f7fafc;
-            padding: 40px;
-            border-radius: 8px;
-        }
-
-        .product-feature h3 {
-            font-size: 24px;
-            color: #2b6cb0;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .product-feature ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .product-feature li {
-            padding: 10px 0 10px 30px;
-            position: relative;
-            color: #4a5568;
-            line-height: 1.6;
-        }
-
-        .product-feature li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2b6cb0;
-            font-weight: bold;
-        }
-
-        .solutions-section {
-            background: #f7fafc;
-            padding: 80px 0;
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .solution-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .solution-card h3 {
-            font-size: 22px;
-            color: #2b6cb0;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .solution-card p {
-            color: #4a5568;
-            line-height: 1.7;
-        }
-
-        .about-section {
-            padding: 80px 0;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-content h3 {
-            font-size: 24px;
-            color: #2b6cb0;
-            margin-bottom: 15px;
-            margin-top: 40px;
-            font-weight: 600;
-        }
-
-        .about-content p {
-            color: #4a5568;
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
+        /* Team Section */
         .team-section {
-            padding: 80px 0;
-            background: white;
+            padding: 120px 0;
+            background: #0f1425;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 60px;
-            margin-top: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 1000px;
+            margin: 60px auto 0;
         }
 
         .team-member {
@@ -338,18 +378,14 @@
         }
 
         .team-photo {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #2b6cb0 0%, #4a90d9 100%);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: white;
-            font-weight: 700;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            margin: 0 auto 25px;
             overflow: hidden;
+            border: 4px solid rgba(74, 144, 226, 0.3);
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.3);
         }
 
         .team-photo img {
@@ -359,195 +395,52 @@
         }
 
         .team-member h4 {
-            font-size: 20px;
-            color: #1a3a52;
+            font-size: 24px;
             margin-bottom: 8px;
-            font-weight: 600;
         }
 
         .team-member .role {
-            color: #2b6cb0;
-            font-size: 15px;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .team-member p {
-            color: #4a5568;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .testimonials-section {
-            background: #f7fafc;
-            padding: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .quote-icon {
-            font-size: 48px;
-            color: #2b6cb0;
-            opacity: 0.2;
-            position: absolute;
-            top: 20px;
-            left: 30px;
-        }
-
-        .testimonial-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-text {
+            color: #4a90e2;
             font-size: 16px;
-            line-height: 1.7;
-            color: #4a5568;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2b6cb0 0%, #4a90d9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .author-info h5 {
-            font-size: 16px;
-            color: #1a3a52;
-            margin-bottom: 4px;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
-        .author-info p {
-            font-size: 13px;
-            color: #718096;
-        }
-
-        .stats-section {
-            background: #2b6cb0;
-            color: white;
-            padding: 60px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .stat-item p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-        .security-section {
-            background: #f7fafc;
-            padding: 80px 0;
-        }
-
-        .security-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .security-content ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 30px;
-        }
-
-        .security-content li {
-            padding: 15px 0 15px 35px;
-            position: relative;
-            color: #4a5568;
+        .team-member p {
+            color: rgba(255, 255, 255, 0.6);
             line-height: 1.7;
-            font-size: 16px;
-        }
-
-        .security-content li:before {
-            content: "🔒";
-            position: absolute;
-            left: 0;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 60px auto 0;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #1a3a52;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
             font-size: 15px;
-            font-family: inherit;
         }
 
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        footer {
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
             text-align: center;
-            padding: 40px 0;
-            background: #1a3a52;
-            color: white;
         }
 
+        .cta-section h2 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0b4d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0e27;
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Page System */
         .page {
             display: none;
         }
@@ -556,128 +449,144 @@
             display: block;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 36px;
+                font-size: 42px;
             }
 
-            .benefits,
-            .solutions-grid,
-            .product-grid,
-            .team-grid,
-            .testimonials-grid,
-            .stats-grid {
+            .features-grid,
+            .process-steps,
+            .stats-grid,
+            .team-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .process-steps {
-                flex-direction: column;
-            }
-
-            .arrow {
-                transform: rotate(90deg);
             }
 
             .nav-links {
                 display: none;
             }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div class="nav-content">
             <div class="logo-container">
-                <svg width="200" height="50" viewBox="0 0 920 600" xmlns="http://www.w3.org/2000/svg" style="height: 50px; width: auto;">
-                    <!-- Heart Shape -->
-                    <path d="M 65 260 C 65 260 65 160 120 160 C 175 160 195 200 195 260 C 195 200 215 160 270 160 C 325 160 325 260 325 260 C 325 260 325 330 195 420 C 65 330 65 260 65 260 Z" 
-                          fill="none" stroke="#2b6cb0" stroke-width="25" stroke-linejoin="round"/>
-                    
-                    <!-- ECG Waveform -->
-                    <path d="M 100 280 L 130 280 L 145 240 L 160 320 L 175 240 L 190 280 L 290 280" 
-                          fill="none" stroke="#2b6cb0" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-                    
-                    <!-- Connection Points -->
-                    <circle cx="260" cy="200" r="15" fill="none" stroke="#2b6cb0" stroke-width="8"/>
-                    <line x1="275" y1="200" x2="310" y2="200" stroke="#2b6cb0" stroke-width="8" stroke-linecap="round"/>
-                    
-                    <!-- CORWA Text -->
-                    <text x="400" y="350" font-family="Arial, sans-serif" font-size="200" font-weight="700" fill="#2b6cb0" letter-spacing="-5">CORWA</text>
+                <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 30 50 Q 30 35 40 35 Q 48 35 50 45 Q 52 35 60 35 Q 70 35 70 50 Q 70 60 60 68 L 50 75 L 40 68 Q 30 60 30 50 Z" 
+                          fill="none" stroke="#4a90e2" stroke-width="3"/>
+                    <path d="M 38 51 L 42 51 L 44 47 L 46 55 L 48 47 L 50 51 L 62 51" 
+                          fill="none" stroke="#4a90e2" stroke-width="2"/>
                 </svg>
+                <span class="logo-text">CORWA</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')">Home</a></li>
                 <li><a href="#" onclick="showPage('product')">Product</a></li>
-                <li><a href="#" onclick="showPage('solutions')">Solutions</a></li>
-                <li><a href="#" onclick="showPage('about')">About</a></li>
-                <li><a href="#" onclick="showPage('security')">Security</a></li>
+                <li><a href="#" onclick="showPage('workerscomp')">Workers Comp Tool</a></li>
+                <li><a href="#" onclick="showPage('team')">Team</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
             </ul>
-            <a href="#" class="btn btn-primary" onclick="showPage('about')">Book a Demo</a>
+            <a href="#" class="btn btn-primary" onclick="showPage('contact')">Book a Demo</a>
         </div>
     </nav>
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
+        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h1>Clarity, on the double.</h1>
-                <p class="subtitle">CORWA turns data into decisions.</p>
-                <a href="#" class="btn btn-primary" onclick="showPage('about')">Book a Demo</a>
-
-                <div class="benefits">
-                    <div class="benefit-card">
-                        <h3>Faster</h3>
-                        <p>With no variability</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>Clear</h3>
-                        <p>What matters is highlighted and easy to find.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>Defensible</h3>
-                        <p>Every line clicks back to the source page.</p>
+                <div class="hero-content">
+                    <h1>Transform Medical Data into Decisions</h1>
+                    <p class="subtitle">AI-powered document intelligence that empowers healthcare teams to deliver accurate, fast, and compassionate care.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" onclick="showPage('contact')">Get Started</a>
+                        <a href="#" class="btn btn-secondary" onclick="showPage('product')">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="how-it-works">
+        <!-- Features Section -->
+        <section class="features-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>How it works</h2>
+                <div class="section-header">
+                    <div class="section-label">CAPABILITIES</div>
+                    <h2>Supercharge Your Medical Review Team</h2>
+                    <p>Advanced AI that transforms complex medical documents into actionable insights</p>
                 </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Process Documents at Scale</h3>
+                        <p>Advanced document-processing technology that quickly extracts critical data from medical records, PDFs, scans, and faxes—with precision and reliability.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Investigate Any Detail</h3>
+                        <p>AI that summarizes document information, answers custom queries, and builds comprehensive reports at your fingertips with full source citations.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Get Actionable Insights</h3>
+                        <p>Powerful machine-learning AI uncovers advanced insights, highlights critical findings, and supports fair & evidence-based outcomes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">✓</div>
+                        <h3>Policy Recommendations</h3>
+                        <p>Clear determinations on approvable, deniable, or missing items with detailed reasons linked back to source documentation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="process-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">PROCESS</div>
+                    <h2>How It Works</h2>
+                    <p>From upload to decision in minutes, not hours</p>
+                </div>
+
                 <div class="process-steps">
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">1</div>
-                        <h4>Upload files</h4>
-                        <p>PDFs, scans, images, faxes</p>
+                        <h4>Upload Files</h4>
+                        <p>PDFs, scans, images, faxes, or Word documents</p>
                     </div>
-                    <div class="arrow">→</div>
-                    <div class="step">
+
+                    <div class="step-card">
                         <div class="step-number">2</div>
-                        <h4>We make them searchable</h4>
-                        <p>Readable and organized</p>
+                        <h4>AI Processing</h4>
+                        <p>We make them searchable, readable, and organized</p>
                     </div>
-                    <div class="arrow">→</div>
-                    <div class="step">
+
+                    <div class="step-card">
                         <div class="step-number">3</div>
-                        <h4>Get clickable report</h4>
-                        <p>All key data extracted</p>
+                        <h4>Clickable Report</h4>
+                        <p>All key data extracted with source citations</p>
                     </div>
-                    <div class="arrow">→</div>
-                    <div class="step">
+
+                    <div class="step-card">
                         <div class="step-number">4</div>
-                        <h4>Policy recommendation</h4>
-                        <p>Approvable/deniable/missing</p>
+                        <h4>Decision Support</h4>
+                        <p>Policy recommendation with detailed reasoning</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="cta-banner">
-            <div class="container">
-                <h2>From waveform to workflow.</h2>
-                <a href="#" class="btn" style="background: white; color: #2b6cb0;" onclick="showPage('about')">Book a Demo</a>
             </div>
         </section>
 
@@ -694,79 +603,117 @@
                         <p>Faster Processing</p>
                     </div>
                     <div class="stat-item">
-                        <h3>50+</h3>
-                        <p>Healthcare Partners</p>
+                        <h3>10K+</h3>
+                        <p>Documents Processed</p>
                     </div>
                     <div class="stat-item">
-                        <h3>100K+</h3>
-                        <p>Documents Processed</p>
+                        <h3>24/7</h3>
+                        <p>AI Availability</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="testimonials-section">
+        <!-- CTA -->
+        <section class="cta-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>What our clients say</h2>
+                <h2>Ready to Transform Your Workflow?</h2>
+                <a href="#" class="btn btn-primary" onclick="showPage('contact')">Book a Demo</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- WORKERS COMP TOOL PAGE -->
+    <div id="workerscomp" class="page">
+        <section class="features-section" style="padding-top: 180px;">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">SPECIALIZED SOLUTION</div>
+                    <h2>CORWA Workers Comp Model</h2>
+                    <p>AI-powered medical review tool designed specifically for workers' compensation claims</p>
                 </div>
 
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="quote-icon">"</div>
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">CORWA has transformed our utilization management process. What used to take hours now takes minutes, and our reviewers can focus on actual clinical decision-making instead of data extraction.</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">SJ</div>
-                                <div class="author-info">
-                                    <h5>Sarah Johnson</h5>
-                                    <p>Director of UM, Regional Health Plan</p>
+                <div style="max-width: 900px; margin: 60px auto; padding: 50px; background: rgba(26, 31, 58, 0.6); border-radius: 16px; border: 1px solid rgba(74, 144, 226, 0.2);">
+                    <h3 style="font-size: 32px; margin-bottom: 30px; color: #4a90e2;">What It Does</h3>
+                    <p style="font-size: 18px; line-height: 1.8; color: rgba(255, 255, 255, 0.8); margin-bottom: 40px;">
+                        An intelligent assistant that helps doctors efficiently compare medical history reports against insurance practice approval criteria. Streamline your workers' compensation reviews with AI-powered document analysis and decision support.
+                    </p>
+
+                    <div class="features-grid" style="margin-top: 50px;">
+                        <div class="feature-card">
+                            <div class="feature-icon">🏥</div>
+                            <h3>Medical History Analysis</h3>
+                            <p>Automatically extract and organize patient medical history from complex documents including visit notes, diagnostic reports, and treatment records.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>Policy Comparison</h3>
+                            <p>Compare extracted medical data against insurance approval criteria and workers' comp guidelines in real-time with clear pass/fail indicators.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Instant Recommendations</h3>
+                            <p>Get immediate approval/denial recommendations with detailed justifications citing specific policy requirements and medical evidence.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>Source Citations</h3>
+                            <p>Every recommendation links directly back to the original document page and policy section, ensuring transparency and defensibility.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px; padding: 40px; background: rgba(74, 144, 226, 0.1); border-radius: 12px; border-left: 4px solid #4a90e2;">
+                        <h4 style="font-size: 24px; margin-bottom: 20px; color: #4a90e2;">How It Works</h4>
+                        <ol style="font-size: 16px; line-height: 2; color: rgba(255, 255, 255, 0.8); padding-left: 20px;">
+                            <li><strong>Upload Medical Records:</strong> PDFs, scans, faxes, or images of patient medical history</li>
+                            <li><strong>AI Processing:</strong> Extract key clinical data points (diagnoses, treatments, dates, outcomes)</li>
+                            <li><strong>Policy Matching:</strong> Compare against workers' comp approval criteria and medical necessity guidelines</li>
+                            <li><strong>Get Results:</strong> Receive clear recommendations with supporting evidence and citations</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 60px;">
+                        <h4 style="font-size: 24px; margin-bottom: 25px; color: #ffffff;">Key Benefits for Doctors</h4>
+                        <div style="display: grid; gap: 20px;">
+                            <div style="display: flex; gap: 15px; align-items: start;">
+                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
+                                <div>
+                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Save Time:</strong>
+                                    <span style="color: rgba(255, 255, 255, 0.7);">Reduce review time from hours to minutes per case</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; align-items: start;">
+                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
+                                <div>
+                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Increase Accuracy:</strong>
+                                    <span style="color: rgba(255, 255, 255, 0.7);">AI catches details that might be missed in manual review</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; align-items: start;">
+                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
+                                <div>
+                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Defensible Decisions:</strong>
+                                    <span style="color: rgba(255, 255, 255, 0.7);">Every determination backed by clear citations and policy references</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; align-items: start;">
+                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
+                                <div>
+                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Consistent Standards:</strong>
+                                    <span style="color: rgba(255, 255, 255, 0.7);">Apply the same criteria uniformly across all cases</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="testimonial-card">
-                        <div class="quote-icon">"</div>
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">The consistency is remarkable. Every reviewer now has access to the same organized information, which has dramatically reduced our appeal rates and improved turnaround times.</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">MK</div>
-                                <div class="author-info">
-                                    <h5>Dr. Michael Kim</h5>
-                                    <p>Chief Medical Officer, TPA Services</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="quote-icon">"</div>
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">Being able to see exactly which documents are missing before we submit has been a game-changer. Our approval rates went up 35% in the first quarter.</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">RP</div>
-                                <div class="author-info">
-                                    <h5>Rachel Patel</h5>
-                                    <p>Practice Administrator, Multispecialty Group</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="quote-icon">"</div>
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">The citations linking back to source documents give us complete confidence in our decisions. It's auditable, defensible, and saves us countless hours of review time.</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">DL</div>
-                                <div class="author-info">
-                                    <h5>David Lee</h5>
-                                    <p>VP of Operations, National Payer</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="margin-top: 60px; text-align: center;">
+                        <p style="font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
+                            Powered by real medical data from PhysioNet's hospital course dataset
+                        </p>
+                        <a href="#" class="btn btn-primary" onclick="showPage('contact')" style="font-size: 18px; padding: 16px 40px;">Request Early Access</a>
                     </div>
                 </div>
             </div>
@@ -775,107 +722,49 @@
 
     <!-- PRODUCT PAGE -->
     <div id="product" class="page">
-        <section class="product-section">
+        <section class="features-section" style="padding-top: 180px;">
             <div class="container">
-                <div class="section-title">
-                    <h2>What you upload</h2>
-                    <p>PDFs, scans, faxes, images, and Word docs.</p>
+                <div class="section-header">
+                    <div class="section-label">PRODUCT</div>
+                    <h2>What You Upload</h2>
+                    <p>PDFs, scans, faxes, images, and Word documents</p>
                 </div>
 
-                <div class="product-grid">
-                    <div class="product-feature">
-                        <h3>What you get back</h3>
-                        <ul>
-                            <li>Readable & searchable document set</li>
-                            <li>Clickable Report with visit dates, age/gender, reason, symptoms + duration</li>
-                            <li>Vitals/BMI, exam findings, diagnostics, plan/orders</li>
-                            <li>Per-page labels (results/HPI/exam/vitals/non-pertinent/blank)</li>
-                        </ul>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <h3>What You Get Back</h3>
+                        <p>Readable & searchable document set with clickable reports including visit dates, age/gender, symptoms, vitals/BMI, exam findings, diagnostics, and plan/orders. Per-page labels for easy navigation.</p>
                     </div>
 
-                    <div class="product-feature">
-                        <h3>Policy recommendation</h3>
-                        <ul>
-                            <li>Clear determination: approvable / deniable / missing items</li>
-                            <li>Detailed reasons for each recommendation</li>
-                            <li>Everything linked back to the original source page</li>
-                            <li>Download as PDF or CSV if needed</li>
-                        </ul>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚖️</div>
+                        <h3>Policy Recommendation</h3>
+                        <p>Clear determination: approvable, deniable, or missing items. Detailed reasons for each recommendation with everything linked back to the original source page. Download as PDF or CSV.</p>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 60px;">
-                    <a href="#" class="btn btn-primary" onclick="showPage('about')">Book a Demo</a>
+                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">Book a Demo</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- SOLUTIONS PAGE -->
-    <div id="solutions" class="page">
-        <section class="solutions-section">
+    <!-- TEAM PAGE -->
+    <div id="team" class="page">
+        <section class="team-section" style="padding-top: 180px;">
             <div class="container">
-                <div class="section-title">
-                    <h2>Solutions for every stakeholder</h2>
-                </div>
-
-                <div class="solutions-grid">
-                    <div class="solution-card">
-                        <h3>For Payers/UM</h3>
-                        <p>Faster reviews, fewer pend cycles, consistent reasons backed by citations.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <h3>For TPAs</h3>
-                        <p>Standardize reviewer quality, see common missing items, improve turnaround.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <h3>For Providers</h3>
-                        <p>Clean pre-submission packs so claims get approved faster.</p>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 60px;">
-                    <a href="#" class="btn btn-primary" onclick="showPage('about')">Talk to Sales</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ABOUT PAGE -->
-    <div id="about" class="page">
-        <section class="about-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>About CORWA</h2>
-                </div>
-
-                <div class="about-content">
-                    <h3>Mission</h3>
-                    <p>Make healthcare data succinct, safe, and actionable.</p>
-
-                    <h3>Who we are</h3>
-                    <p>Clinicians and engineers building tools that save time and reduce back-and-forth.</p>
-
-                    <h3>Contact</h3>
-                    <p>hello@corwa.com</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="team-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Meet the team</h2>
+                <div class="section-header">
+                    <div class="section-label">TEAM</div>
+                    <h2>Meet the Founders</h2>
                     <p>Healthcare experts and technology innovators</p>
                 </div>
 
                 <div class="team-grid">
                     <div class="team-member">
                         <div class="team-photo" style="background: #e2e8f0;">
-                            <span style="font-size: 14px; color: #4a5568; padding: 20px; text-align: center;">Add Abdullah's photo here</span>
+                            <span style="font-size: 14px; color: #4a5568; padding: 20px; display: flex; align-items: center; justify-content: center; height: 100%;">Add photo</span>
                         </div>
                         <h4>Abdullah Sarkar, M.D.</h4>
                         <p class="role">Co-Founder & CEO</p>
@@ -884,7 +773,7 @@
 
                     <div class="team-member">
                         <div class="team-photo" style="background: #e2e8f0;">
-                            <span style="font-size: 14px; color: #4a5568; padding: 20px; text-align: center;">Add Munib's photo here</span>
+                            <span style="font-size: 14px; color: #4a5568; padding: 20px; display: flex; align-items: center; justify-content: center; height: 100%;">Add photo</span>
                         </div>
                         <h4>Munib Rizvi</h4>
                         <p class="role">Co-Founder & CTO</p>
@@ -893,71 +782,56 @@
                 </div>
             </div>
         </section>
+    </div>
 
-        <section class="about-section">
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section class="cta-section" style="padding-top: 180px; min-height: 100vh;">
             <div class="container">
+                <div class="section-header">
+                    <div class="section-label">CONTACT</div>
+                    <h2>Get in Touch</h2>
+                    <p>Let's discuss how CORWA can transform your workflow</p>
+                </div>
 
-                <div class="contact-form">
-                    <h3 style="text-align: center; margin-bottom: 30px; color: #2b6cb0;">Book a Demo</h3>
-                    <form>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Work Email</label>
-                            <input type="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Organization</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Role</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
-                    </form>
+                <div style="max-width: 600px; margin: 60px auto; text-align: left; background: rgba(26, 31, 58, 0.6); padding: 50px; border-radius: 16px; border: 1px solid rgba(74, 144, 226, 0.2);">
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9); font-weight: 500;">Name</label>
+                        <input type="text" style="width: 100%; padding: 15px; background: rgba(15, 20, 37, 0.8); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 8px; color: white; font-size: 15px;">
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9); font-weight: 500;">Work Email</label>
+                        <input type="email" style="width: 100%; padding: 15px; background: rgba(15, 20, 37, 0.8); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 8px; color: white; font-size: 15px;">
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9); font-weight: 500;">Organization</label>
+                        <input type="text" style="width: 100%; padding: 15px; background: rgba(15, 20, 37, 0.8); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 8px; color: white; font-size: 15px;">
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9); font-weight: 500;">Message</label>
+                        <textarea style="width: 100%; padding: 15px; background: rgba(15, 20, 37, 0.8); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 8px; color: white; font-size: 15px; min-height: 150px; font-family: inherit;"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%;">Send Message</button>
+
+                    <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
+                        <p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 10px;">Or email us directly:</p>
+                        <a href="mailto:hello@corwa.ai" style="color: #4a90e2; font-weight: 600; font-size: 18px; text-decoration: none;">hello@corwa.ai</a>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- SECURITY PAGE -->
-    <div id="security" class="page">
-        <section class="security-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Security & Compliance</h2>
-                </div>
-
-                <div class="security-content">
-                    <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 18px;">We handle PHI carefully and take your data security seriously.</p>
-
-                    <ul>
-                        <li>Encryption in transit and at rest to protect all data</li>
-                        <li>Account-based access with comprehensive action logging</li>
-                        <li>Data retention policies configurable by client needs</li>
-                        <li>Business Associate Agreements (BAA) available</li>
-                        <li>HIPAA-minded handling across all systems</li>
-                        <li>Regular security audits and compliance reviews</li>
-                    </ul>
-                </div>
-
-                <div style="text-align: center; margin-top: 60px;">
-                    <a href="#" class="btn btn-primary" onclick="showPage('about')">Contact Us</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 CORWA Health. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2025 CORWA Health. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -966,7 +840,7 @@
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
