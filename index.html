@@ -125,18 +125,242 @@
             position: relative;
             padding-top: 80px;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            overflow: hidden;
+            overflow: visible;
         }
 
-        .hero::before {
-            content: '';
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 50px); }
+        }
+
+        /* Animated Background */
+        .hero-animation {
             position: absolute;
-            width: 600px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
             height: 600px;
-            background: radial-gradient(circle, rgba(74, 144, 226, 0.15) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .doc-container {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .doc-1 {
+            width: 200px;
+            height: 280px;
+            top: 50px;
+            left: 100px;
+            animation: docFloat1 8s ease-in-out infinite;
+        }
+
+        .doc-2 {
+            width: 180px;
+            height: 250px;
+            top: 200px;
+            left: 250px;
+            animation: docFloat2 10s ease-in-out infinite 1s;
+        }
+
+        .doc-3 {
+            width: 160px;
+            height: 220px;
+            top: 100px;
+            left: 50px;
+            animation: docFloat3 12s ease-in-out infinite 2s;
+        }
+
+        @keyframes docFloat1 {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(2deg); opacity: 0.6; }
+        }
+
+        @keyframes docFloat2 {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.25; }
+            50% { transform: translateY(-40px) rotate(-2deg); opacity: 0.5; }
+        }
+
+        @keyframes docFloat3 {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-25px) rotate(3deg); opacity: 0.45; }
+        }
+
+        .doc-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .doc-line {
+            height: 4px;
+            background: rgba(74, 144, 226, 0.4);
+            border-radius: 2px;
+        }
+
+        .doc-line:nth-child(1) { width: 80%; }
+        .doc-line:nth-child(2) { width: 95%; }
+        .doc-line:nth-child(3) { width: 70%; }
+        .doc-line:nth-child(4) { width: 90%; }
+        .doc-line:nth-child(5) { width: 60%; }
+
+        .ai-processor {
+            position: absolute;
+            width: 350px;
+            height: 200px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 2px solid rgba(74, 144, 226, 0.4);
+            border-radius: 16px;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: processorPulse 3s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes processorPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(74, 144, 226, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(74, 144, 226, 0.6); }
+        }
+
+        .ai-icon {
+            font-size: 64px;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .data-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #4a90e2;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .particle-1 {
+            top: 20%;
+            left: 35%;
+            animation: particleFlow1 4s ease-in-out infinite;
+        }
+
+        .particle-2 {
+            top: 30%;
+            left: 37%;
+            animation: particleFlow2 4s ease-in-out infinite 0.5s;
+        }
+
+        .particle-3 {
+            top: 40%;
+            left: 36%;
+            animation: particleFlow3 4s ease-in-out infinite 1s;
+        }
+
+        .particle-4 {
+            top: 50%;
+            left: 38%;
+            animation: particleFlow4 4s ease-in-out infinite 1.5s;
+        }
+
+        .particle-5 {
+            top: 60%;
+            left: 37%;
+            animation: particleFlow5 4s ease-in-out infinite 2s;
+        }
+
+        @keyframes particleFlow1 {
+            0% { transform: translate(-100px, -50px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(300px, 50px); opacity: 0; }
+        }
+
+        @keyframes particleFlow2 {
+            0% { transform: translate(-120px, -30px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(280px, 30px); opacity: 0; }
+        }
+
+        @keyframes particleFlow3 {
+            0% { transform: translate(-90px, -40px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(320px, 40px); opacity: 0; }
+        }
+
+        @keyframes particleFlow4 {
+            0% { transform: translate(-110px, -35px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(290px, 35px); opacity: 0; }
+        }
+
+        @keyframes particleFlow5 {
+            0% { transform: translate(-100px, -45px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(310px, 45px); opacity: 0; }
+        }
+
+        .output-card {
+            position: absolute;
+            width: 280px;
+            background: rgba(74, 144, 226, 0.2);
+            border: 2px solid rgba(74, 144, 226, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            bottom: 100px;
+            right: 100px;
+            animation: outputAppear 8s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes outputAppear {
+            0%, 40% { opacity: 0; transform: translateY(20px); }
+            50%, 90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        .output-title {
+            font-size: 14px;
+            color: #4a90e2;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .output-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .output-icon {
+            width: 16px;
+            height: 16px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
         }
 
         @keyframes float {
@@ -296,6 +520,23 @@
         .process-section {
             padding: 120px 0;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            position: relative;
+        }
+
+        .process-section .animation-wrapper {
+            position: relative;
+            height: 600px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            background: rgba(10, 14, 39, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+        }
+
+        .process-section .hero-animation {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         .process-steps {
@@ -455,6 +696,14 @@
                 font-size: 42px;
             }
 
+            .hero-animation {
+                display: none;
+            }
+
+            .animation-wrapper {
+                height: 400px;
+            }
+
             .features-grid,
             .process-steps,
             .stats-grid,
@@ -492,7 +741,6 @@
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')">Home</a></li>
                 <li><a href="#" onclick="showPage('product')">Product</a></li>
-                <li><a href="#" onclick="showPage('workerscomp')">Workers Comp Tool</a></li>
                 <li><a href="#" onclick="showPage('team')">Team</a></li>
                 <li><a href="#" onclick="showPage('contact')">Contact</a></li>
             </ul>
@@ -506,8 +754,8 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Transform Medical Data into Decisions</h1>
-                    <p class="subtitle">AI-powered document intelligence that empowers healthcare teams to deliver accurate, fast, and compassionate care.</p>
+                    <h1>Transform Data into Decisions</h1>
+                    <p class="subtitle">AI-powered document intelligence that empowers healthcare teams to deliver accurate, fast, and better care.</p>
                     <div class="hero-buttons">
                         <a href="#" class="btn btn-primary" onclick="showPage('contact')">Get Started</a>
                         <a href="#" class="btn btn-secondary" onclick="showPage('product')">Learn More</a>
@@ -560,6 +808,79 @@
                     <div class="section-label">PROCESS</div>
                     <h2>How It Works</h2>
                     <p>From upload to decision in minutes, not hours</p>
+                </div>
+
+                <!-- Animation Visualization -->
+                <div class="animation-wrapper">
+                    <div class="hero-animation">
+                        <!-- Floating Documents -->
+                        <div class="doc-container doc-1">
+                            <div class="doc-lines">
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="doc-container doc-2">
+                            <div class="doc-lines">
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="doc-container doc-3">
+                            <div class="doc-lines">
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- AI Processor -->
+                        <div class="ai-processor">
+                            <div class="ai-icon">🤖</div>
+                        </div>
+
+                        <!-- Data Particles -->
+                        <div class="data-particle particle-1"></div>
+                        <div class="data-particle particle-2"></div>
+                        <div class="data-particle particle-3"></div>
+                        <div class="data-particle particle-4"></div>
+                        <div class="data-particle particle-5"></div>
+
+                        <!-- Output Card -->
+                        <div class="output-card">
+                            <div class="output-title">✓ Extracted Data</div>
+                            <div class="output-item">
+                                <div class="output-icon">📋</div>
+                                <span>Patient History: Complete</span>
+                            </div>
+                            <div class="output-item">
+                                <div class="output-icon">🔍</div>
+                                <span>Diagnosis: Identified</span>
+                            </div>
+                            <div class="output-item">
+                                <div class="output-icon">💊</div>
+                                <span>Treatment Plan: Verified</span>
+                            </div>
+                            <div class="output-item">
+                                <div class="output-icon">✅</div>
+                                <span>Compliance: Approved</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="process-steps">
@@ -623,129 +944,65 @@
         </section>
     </div>
 
-    <!-- WORKERS COMP TOOL PAGE -->
-    <div id="workerscomp" class="page">
-        <section class="features-section" style="padding-top: 180px;">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">SPECIALIZED SOLUTION</div>
-                    <h2>CORWA Workers Comp Model</h2>
-                    <p>AI-powered medical review tool designed specifically for workers' compensation claims</p>
-                </div>
-
-                <div style="max-width: 900px; margin: 60px auto; padding: 50px; background: rgba(26, 31, 58, 0.6); border-radius: 16px; border: 1px solid rgba(74, 144, 226, 0.2);">
-                    <h3 style="font-size: 32px; margin-bottom: 30px; color: #4a90e2;">What It Does</h3>
-                    <p style="font-size: 18px; line-height: 1.8; color: rgba(255, 255, 255, 0.8); margin-bottom: 40px;">
-                        An intelligent assistant that helps doctors efficiently compare medical history reports against insurance practice approval criteria. Streamline your workers' compensation reviews with AI-powered document analysis and decision support.
-                    </p>
-
-                    <div class="features-grid" style="margin-top: 50px;">
-                        <div class="feature-card">
-                            <div class="feature-icon">🏥</div>
-                            <h3>Medical History Analysis</h3>
-                            <p>Automatically extract and organize patient medical history from complex documents including visit notes, diagnostic reports, and treatment records.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">📊</div>
-                            <h3>Policy Comparison</h3>
-                            <p>Compare extracted medical data against insurance approval criteria and workers' comp guidelines in real-time with clear pass/fail indicators.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">⚡</div>
-                            <h3>Instant Recommendations</h3>
-                            <p>Get immediate approval/denial recommendations with detailed justifications citing specific policy requirements and medical evidence.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">🔗</div>
-                            <h3>Source Citations</h3>
-                            <p>Every recommendation links directly back to the original document page and policy section, ensuring transparency and defensibility.</p>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 60px; padding: 40px; background: rgba(74, 144, 226, 0.1); border-radius: 12px; border-left: 4px solid #4a90e2;">
-                        <h4 style="font-size: 24px; margin-bottom: 20px; color: #4a90e2;">How It Works</h4>
-                        <ol style="font-size: 16px; line-height: 2; color: rgba(255, 255, 255, 0.8); padding-left: 20px;">
-                            <li><strong>Upload Medical Records:</strong> PDFs, scans, faxes, or images of patient medical history</li>
-                            <li><strong>AI Processing:</strong> Extract key clinical data points (diagnoses, treatments, dates, outcomes)</li>
-                            <li><strong>Policy Matching:</strong> Compare against workers' comp approval criteria and medical necessity guidelines</li>
-                            <li><strong>Get Results:</strong> Receive clear recommendations with supporting evidence and citations</li>
-                        </ol>
-                    </div>
-
-                    <div style="margin-top: 60px;">
-                        <h4 style="font-size: 24px; margin-bottom: 25px; color: #ffffff;">Key Benefits for Doctors</h4>
-                        <div style="display: grid; gap: 20px;">
-                            <div style="display: flex; gap: 15px; align-items: start;">
-                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
-                                <div>
-                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Save Time:</strong>
-                                    <span style="color: rgba(255, 255, 255, 0.7);">Reduce review time from hours to minutes per case</span>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 15px; align-items: start;">
-                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
-                                <div>
-                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Increase Accuracy:</strong>
-                                    <span style="color: rgba(255, 255, 255, 0.7);">AI catches details that might be missed in manual review</span>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 15px; align-items: start;">
-                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
-                                <div>
-                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Defensible Decisions:</strong>
-                                    <span style="color: rgba(255, 255, 255, 0.7);">Every determination backed by clear citations and policy references</span>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 15px; align-items: start;">
-                                <span style="color: #4a90e2; font-size: 24px;">✓</span>
-                                <div>
-                                    <strong style="color: #ffffff; display: block; margin-bottom: 5px;">Consistent Standards:</strong>
-                                    <span style="color: rgba(255, 255, 255, 0.7);">Apply the same criteria uniformly across all cases</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 60px; text-align: center;">
-                        <p style="font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-                            Powered by real medical data from PhysioNet's hospital course dataset
-                        </p>
-                        <a href="#" class="btn btn-primary" onclick="showPage('contact')" style="font-size: 18px; padding: 16px 40px;">Request Early Access</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <!-- PRODUCT PAGE -->
     <div id="product" class="page">
         <section class="features-section" style="padding-top: 180px;">
             <div class="container">
                 <div class="section-header">
                     <div class="section-label">PRODUCT</div>
-                    <h2>What You Upload</h2>
-                    <p>PDFs, scans, faxes, images, and Word documents</p>
+                    <h2>CORWA Modular System</h2>
+                    <p>Specialized solutions for any healthcare team</p>
                 </div>
 
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📋</div>
-                        <h3>What You Get Back</h3>
-                        <p>Readable & searchable document set with clickable reports including visit dates, age/gender, symptoms, vitals/BMI, exam findings, diagnostics, and plan/orders. Per-page labels for easy navigation.</p>
+                        <h3>Patient Medical Records Synthesis</h3>
+                        <p>Transform complex medical histories into clear, organized summaries with automated extraction of key clinical data points and chronological timelines.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>Utilization Management Processing</h3>
+                        <p>Streamline prior authorization and medical necessity reviews with intelligent document analysis and policy matching for faster, more consistent decisions.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏥</div>
+                        <h3>Workers' Compensation Case Review</h3>
+                        <p>Compare medical records against workers' comp approval criteria with AI-powered analysis that highlights critical findings and policy alignment.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">⚖️</div>
-                        <h3>Policy Recommendation</h3>
-                        <p>Clear determination: approvable, deniable, or missing items. Detailed reasons for each recommendation with everything linked back to the original source page. Download as PDF or CSV.</p>
+                        <h3>Medicare/Medicaid Regulatory Compliance</h3>
+                        <p>Ensure documentation meets CMS requirements with automated compliance checking and gap identification for regulatory submissions.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💪</div>
+                        <h3>Physical Therapy / Rehab Authorization Tracking</h3>
+                        <p>Monitor PT/OT authorization status, track utilization against approved visits, and flag cases requiring re-authorization or extension requests.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Chart Abstraction for Research/Quality Registries</h3>
+                        <p>Extract standardized clinical data elements for quality registries, research studies, and performance measurement with high accuracy and consistency.</p>
                     </div>
                 </div>
 
+                <div style="margin-top: 80px; padding: 50px; background: rgba(74, 144, 226, 0.1); border-radius: 16px; border-left: 4px solid #4a90e2; text-align: center;">
+                    <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 15px;">
+                        <strong style="color: #4a90e2;">Powered by real medical data</strong>
+                    </p>
+                    <p style="font-size: 16px; color: rgba(255, 255, 255, 0.6);">
+                        Built on open source datasets and specialized data compilation sources to ensure accuracy and reliability across all clinical use cases.
+                    </p>
+                </div>
+
                 <div style="text-align: center; margin-top: 60px;">
-                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">Book a Demo</a>
+                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">Request a Demo</a>
                 </div>
             </div>
         </section>
@@ -763,17 +1020,17 @@
 
                 <div class="team-grid">
                     <div class="team-member">
-                        <div class="team-photo" style="background: #e2e8f0;">
-                            <span style="font-size: 14px; color: #4a5568; padding: 20px; display: flex; align-items: center; justify-content: center; height: 100%;">Add photo</span>
+                        <div class="team-photo">
+                            <img src="https://i.ibb.co/YpmQKJR/abdullah-sarkar-doctor.jpg" alt="Abdullah Sarkar" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <h4>Abdullah Sarkar, M.D.</h4>
+                        <h4>Abdullah Sarkar, M.D., M.S.</h4>
                         <p class="role">Co-Founder & CEO</p>
                         <p>Stanford Health Care physician with expertise in healthcare technology and clinical innovation. Leading CORWA's mission to transform medical data processing.</p>
                     </div>
 
                     <div class="team-member">
-                        <div class="team-photo" style="background: #e2e8f0;">
-                            <span style="font-size: 14px; color: #4a5568; padding: 20px; display: flex; align-items: center; justify-content: center; height: 100%;">Add photo</span>
+                        <div class="team-photo">
+                            <img src="https://i.ibb.co/ZKqYx9w/munib-rizvi-street.jpg" alt="Munib Rizvi" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <h4>Munib Rizvi</h4>
                         <p class="role">Co-Founder & CTO</p>
@@ -830,7 +1087,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 CORWA Health. All rights reserved.</p>
+                <p>&copy; 2025 CORWA Health. All rights reserved. | <a href="mailto:hello@corwa.ai" style="color: #4a90e2; text-decoration: none;">hello@corwa.ai</a> | <span style="color: rgba(255, 255, 255, 0.3);">corwa.ai</span></p>
             </div>
         </div>
     </footer>
