@@ -700,54 +700,313 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
-            }
-
+        @media (max-width: 1024px) {
             .animation-wrapper {
                 display: none !important;
+                height: 0 !important;
+                overflow: hidden !important;
             }
 
             .hero-animation {
                 display: none !important;
             }
 
-            .process-section .animation-wrapper {
+            .doc-container,
+            .ai-processor,
+            .data-particle,
+            .output-card {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hide all animation elements */
+            .animation-wrapper {
+                display: none !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .hero-animation,
+            .doc-container,
+            .ai-processor,
+            .data-particle,
+            .output-card {
                 display: none !important;
             }
 
-            .features-grid,
-            .process-steps,
-            .stats-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
+            .process-section .animation-wrapper {
+                display: none !important;
+                height: 0 !important;
             }
 
+            /* Hero Section */
+            .hero {
+                min-height: 100vh;
+                padding-top: 100px;
+                padding-bottom: 60px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 16px 24px;
+                font-size: 16px;
+            }
+
+            /* Navigation */
             .nav-links {
                 display: none;
+            }
+
+            .nav-content {
+                padding: 15px 20px;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+
+            .logo-container svg,
+            .logo-container img {
+                height: 40px !important;
+                width: auto !important;
+            }
+
+            /* Sections */
+            .features-section,
+            .process-section,
+            .stats-section,
+            .team-section,
+            .cta-section {
+                padding: 60px 0;
             }
 
             .container {
                 padding: 0 20px;
             }
 
+            /* Section Headers */
             .section-header h2 {
-                font-size: 36px;
+                font-size: 32px;
+                line-height: 1.3;
+                margin-bottom: 15px;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
+            .section-header p {
+                font-size: 16px;
+                line-height: 1.6;
             }
 
-            .btn {
-                width: 100%;
+            .section-label {
+                font-size: 12px;
+            }
+
+            /* Feature Cards */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .feature-card {
+                padding: 30px 25px;
+            }
+
+            .feature-card h3 {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            .feature-card p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            /* Process Steps */
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .step-card {
+                padding: 25px;
+            }
+
+            .step-number {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .step-card h4 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .step-card p {
+                font-size: 14px;
+            }
+
+            /* Stats Section */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .stat-item h3 {
+                font-size: 48px;
+                margin-bottom: 8px;
+            }
+
+            .stat-item p {
+                font-size: 15px;
+            }
+
+            /* Team Section */
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
             .team-photo {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
+                margin: 0 auto 20px;
+            }
+
+            .team-member h4 {
+                font-size: 22px;
+            }
+
+            .team-member .role {
+                font-size: 15px;
+            }
+
+            .team-member p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            /* CTA Section */
+            .cta-section h2 {
+                font-size: 32px;
+                line-height: 1.3;
+                margin-bottom: 25px;
+            }
+
+            /* Footer */
+            footer {
+                padding: 30px 0;
+            }
+
+            .footer-content p {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* Fix overflow */
+            body {
+                overflow-x: hidden;
+            }
+
+            .page {
+                overflow-x: hidden;
+            }
+
+            /* Product Page Customization Section */
+            .product-section div[style*="padding: 60px 50px"] {
+                padding: 30px 20px !important;
+            }
+
+            .product-section h3 {
+                font-size: 24px !important;
+            }
+
+            .product-section div[style*="display: flex"] {
+                flex-direction: column !important;
+                padding: 15px !important;
+            }
+
+            /* Contact Form */
+            .contact-form,
+            div[style*="max-width: 600px"][style*="padding: 50px"] {
+                padding: 30px 20px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero .subtitle {
+                font-size: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .feature-card h3 {
+                font-size: 20px;
+            }
+
+            .feature-card {
+                padding: 25px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .stat-item h3 {
+                font-size: 42px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+
+            .team-photo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .logo-text {
+                font-size: 20px;
             }
         }
     </style>
