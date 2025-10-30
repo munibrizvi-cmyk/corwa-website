@@ -726,27 +726,43 @@
         }
 
         @media (max-width: 768px) {
-            /* Show animation on mobile - but smaller */
+            /* Animation contained in box */
             .animation-wrapper {
                 display: block !important;
-                height: 500px !important;
-                margin: 40px 0 !important;
-                overflow: visible !important;
+                height: 400px !important;
+                margin: 20px 5px !important;
+                padding: 10px !important;
+                overflow: hidden !important;
                 position: relative !important;
+                background: rgba(10, 14, 39, 0.9) !important;
+                border: 2px solid rgba(74, 144, 226, 0.4) !important;
+                border-radius: 12px !important;
             }
 
             .hero-animation {
                 display: block !important;
-                position: relative !important;
-                width: 100% !important;
-                height: 100% !important;
-                transform: none !important;
+                position: absolute !important;
+                width: calc(100% - 20px) !important;
+                height: calc(100% - 20px) !important;
+                left: 10px !important;
+                top: 10px !important;
             }
 
+            /* Make all animation elements smaller and contained */
             .doc-container {
-                width: 100px !important;
-                height: 140px !important;
-                font-size: 10px !important;
+                width: 70px !important;
+                height: 95px !important;
+                padding: 6px !important;
+                font-size: 8px !important;
+            }
+
+            .doc-container [style*="font-size: 48px"] {
+                font-size: 20px !important;
+            }
+
+            .doc-container [style*="font-size: 14px"],
+            .doc-container [style*="font-size: 13px"] {
+                font-size: 8px !important;
             }
 
             .doc-1 {
@@ -755,54 +771,70 @@
             }
 
             .doc-2 {
-                top: 180px !important;
+                top: 130px !important;
                 left: 10px !important;
             }
 
+            .doc-line {
+                height: 2px !important;
+                margin-bottom: 3px !important;
+            }
+
             .ai-processor {
-                width: 140px !important;
-                height: 140px !important;
+                width: 100px !important;
+                height: 100px !important;
                 left: 50% !important;
                 top: 50% !important;
                 transform: translate(-50%, -50%) !important;
+                padding: 8px !important;
             }
 
-            .ai-icon {
-                font-size: 40px !important;
+            .ai-processor [style*="font-size: 80px"] {
+                font-size: 32px !important;
+            }
+
+            .ai-processor [style*="font-size: 16px"],
+            .ai-processor [style*="font-size: 14px"] {
+                font-size: 9px !important;
             }
 
             .output-card {
-                width: 140px !important;
-                padding: 10px !important;
+                width: 100px !important;
+                padding: 8px !important;
                 right: 10px !important;
                 top: 50% !important;
                 transform: translateY(-50%) !important;
             }
 
-            .output-title {
-                font-size: 10px !important;
-                margin-bottom: 8px !important;
+            .output-card [style*="font-size: 48px"] {
+                font-size: 20px !important;
+            }
+
+            .output-card [style*="font-size: 16px"],
+            .output-card [style*="font-size: 14px"] {
+                font-size: 8px !important;
             }
 
             .output-item {
-                font-size: 8px !important;
-                margin-bottom: 5px !important;
+                font-size: 7px !important;
+                margin-bottom: 4px !important;
+                gap: 4px !important;
             }
 
             .output-icon {
-                width: 12px !important;
-                height: 12px !important;
-                font-size: 8px !important;
+                width: 10px !important;
+                height: 10px !important;
+                font-size: 7px !important;
             }
 
             .data-particle {
-                width: 4px !important;
-                height: 4px !important;
+                width: 3px !important;
+                height: 3px !important;
             }
 
             .process-section .animation-wrapper {
                 display: block !important;
-                height: 500px !important;
+                height: 400px !important;
             }
 
             /* Navigation */
@@ -811,7 +843,7 @@
             }
 
             .mobile-menu-btn {
-                display: block;
+                display: block !important;
             }
 
             .nav-content {
@@ -824,13 +856,13 @@
 
             .logo-container svg,
             .logo-container img {
-                height: 40px !important;
+                height: 35px !important;
                 width: auto !important;
             }
 
             /* Hide "Book a Demo" button in nav on mobile */
             .nav-content > .btn-primary {
-                display: none;
+                display: none !important;
             }
 
             /* Hero Section */
@@ -1132,17 +1164,17 @@
                 <span class="logo-text">CORWA</span>
             </div>
             
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-                <span id="menuIcon">☰</span>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                ☰
             </button>
             
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home'); closeMobileMenu();">Home</a></li>
-                <li><a href="#" onclick="showPage('product'); closeMobileMenu();">Product</a></li>
-                <li><a href="#" onclick="showPage('team'); closeMobileMenu();">Team</a></li>
-                <li><a href="#" onclick="showPage('contact'); closeMobileMenu();">Contact</a></li>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="product">Product</a></li>
+                <li><a href="#" data-page="team">Team</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
-            <a href="#" class="btn btn-primary" onclick="showPage('contact')">Book a Demo</a>
+            <a href="#" class="btn btn-primary" data-page="contact">Book a Demo</a>
         </div>
     </nav>
 
@@ -1544,27 +1576,43 @@
     </footer>
 
     <script>
+        // Page navigation
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({top: 0, behavior: 'smooth'});
-            closeMobileMenu();
         }
 
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const menuIcon = document.getElementById('menuIcon');
-            navLinks.classList.toggle('mobile-open');
-            menuIcon.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navLinks.classList.toggle('mobile-open');
+                this.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+            });
         }
 
-        function closeMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const menuIcon = document.getElementById('menuIcon');
-            navLinks.classList.remove('mobile-open');
-            menuIcon.textContent = '☰';
-        }
+        // Handle all navigation clicks
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('[data-page]');
+            if (link) {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('mobile-open')) {
+                    navLinks.classList.remove('mobile-open');
+                    if (mobileMenuBtn) {
+                        mobileMenuBtn.textContent = '☰';
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
