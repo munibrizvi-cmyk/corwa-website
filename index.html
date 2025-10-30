@@ -125,7 +125,6 @@
             position: relative;
             padding-top: 80px;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            overflow: visible;
         }
 
         @keyframes float {
@@ -701,51 +700,111 @@
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
+            /* Show simplified animation on tablets */
             .animation-wrapper {
-                display: none !important;
-                height: 0 !important;
-                overflow: hidden !important;
+                height: 400px !important;
             }
 
-            .hero-animation {
-                display: none !important;
+            .doc-container {
+                width: 120px !important;
+                height: 160px !important;
             }
 
-            .doc-container,
-            .ai-processor,
-            .data-particle,
+            .ai-processor {
+                width: 200px !important;
+                height: 200px !important;
+            }
+
             .output-card {
-                display: none !important;
+                width: 180px !important;
+                padding: 15px !important;
+            }
+
+            .output-item {
+                font-size: 10px !important;
             }
         }
 
         @media (max-width: 768px) {
-            /* Hide all animation elements */
+            /* Show animation on mobile */
             .animation-wrapper {
-                display: none !important;
-                height: 0 !important;
-                margin: 0 !important;
-                padding: 0 !important;
+                display: block !important;
+                height: 350px !important;
+                margin: 40px 0 !important;
+                overflow: hidden;
             }
 
-            .hero-animation,
-            .doc-container,
-            .ai-processor,
-            .data-particle,
+            .hero-animation {
+                display: block !important;
+                transform: scale(0.6);
+                transform-origin: center center;
+            }
+
+            .doc-container {
+                width: 140px !important;
+                height: 180px !important;
+            }
+
+            .doc-1 {
+                top: 30px !important;
+                left: 20px !important;
+            }
+
+            .doc-2 {
+                top: 200px !important;
+                left: 20px !important;
+            }
+
+            .ai-processor {
+                width: 180px !important;
+                height: 180px !important;
+            }
+
+            .ai-icon {
+                font-size: 50px !important;
+            }
+
             .output-card {
-                display: none !important;
+                width: 200px !important;
+                padding: 15px !important;
+                right: 20px !important;
+            }
+
+            .output-title {
+                font-size: 12px !important;
+            }
+
+            .output-item {
+                font-size: 10px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .output-icon {
+                width: 14px !important;
+                height: 14px !important;
+                font-size: 9px !important;
+            }
+
+            .data-particle {
+                width: 4px !important;
+                height: 4px !important;
             }
 
             .process-section .animation-wrapper {
-                display: none !important;
-                height: 0 !important;
+                display: block !important;
+                height: 350px !important;
             }
 
             /* Hero Section */
             .hero {
-                min-height: 100vh;
+                min-height: 85vh;
+                height: auto;
                 padding-top: 100px;
-                padding-bottom: 60px;
+                padding-bottom: 40px;
+            }
+
+            .hero-content {
+                width: 100%;
             }
 
             .hero h1 {
@@ -962,6 +1021,10 @@
 
         @media (max-width: 480px) {
             /* Extra small screens */
+            .hero {
+                min-height: 80vh;
+            }
+
             .hero h1 {
                 font-size: 32px;
             }
@@ -1016,7 +1079,7 @@
     <nav>
         <div class="nav-content">
             <div class="logo-container">
-                <img src="logo.png" alt="CORWA Logo" style="height: 45px; width: auto;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <img src="./logo.png" alt="CORWA Logo" style="height: 45px; width: auto;" onload="this.style.display='inline';" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                 <svg width="45" height="45" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="display: none;">
                     <defs>
                         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1364,7 +1427,7 @@
                 <div class="team-grid">
                     <div class="team-member">
                         <div class="team-photo">
-                            <img src="abdullah.jpg" alt="Abdullah Sarkar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><text x=\'50\' y=\'60\' font-family=\'Arial\' font-size=\'48\' font-weight=\'700\' fill=\'white\' text-anchor=\'middle\'>AS</text></svg>';">
+                            <img src="./abdullah.jpg" alt="Abdullah Sarkar" style="width: 100%; height: 100%; object-fit: cover;" onload="this.style.display='block';" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#4a90e2 0%,#357abd 100%);\'><svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><text x=\'50\' y=\'60\' font-family=\'Arial\' font-size=\'48\' font-weight=\'700\' fill=\'white\' text-anchor=\'middle\'>AS</text></svg></div>';">
                         </div>
                         <h4>Abdullah Sarkar, M.D., M.S.</h4>
                         <p class="role">Co-Founder & CEO</p>
@@ -1373,7 +1436,7 @@
 
                     <div class="team-member">
                         <div class="team-photo">
-                            <img src="munib.jpg" alt="Munib Rizvi" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><text x=\'50\' y=\'60\' font-family=\'Arial\' font-size=\'48\' font-weight=\'700\' fill=\'white\' text-anchor=\'middle\'>MR</text></svg>';">
+                            <img src="./munib.jpg" alt="Munib Rizvi" style="width: 100%; height: 100%; object-fit: cover;" onload="this.style.display='block';" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#4a90e2 0%,#357abd 100%);\'><svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><text x=\'50\' y=\'60\' font-family=\'Arial\' font-size=\'48\' font-weight=\'700\' fill=\'white\' text-anchor=\'middle\'>MR</text></svg></div>';">
                         </div>
                         <h4>Munib Rizvi</h4>
                         <p class="role">Co-Founder & CTO</p>
